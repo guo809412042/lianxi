@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止关闭和刷新</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
+    
+    </head>
+    <body>
+        <!-- 跳转 -->
+        <a href="www.baidu.com">离开当前页面</a>
+        <input type="text ">
+        <script type="text/javascript">
+
+            // 原生的方法都是  如果焦点在摸一个输入框上 关闭浏览器和页面回被监听到的
+
+
+        // // 原生的方法
+        // var a = "注意！！\n您即将离开页面！离开后可能会导致数据丢失\n\n您确定要离开吗？";
+        // window.onbeforeunload = function (b) {
+        //     b = b || window.event;
+        //     console.log(b.returnValue)
+        //     alert(b.returnValue)
+        //     b.returnValue = a;
+        //     return a
+        // }
+
+
+                   //  JQ 方法 比较完美解决
+            $(window).bind('beforeunload',function(e) {
+                // return "注意！！\n您即将离开页面！离开后可能会导致数据丢失\n\n您确定要离开吗？"
+                return true;}
+            );
+
+            // window.onbeforeunload = function() {
+            //     return "asadaasd"
+            // }
+
+
+        </script>
+    </body>
+</html>

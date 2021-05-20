@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="time"></div>
+  <div class="time"></div>
+  <div class="time"></div>
+
+
+  <script>
+    const sp = document.querySelector('.time')
+
+
+    let date = new Date()
+    const year = date.getFullYear()
+    let month = date.getMonth()+1
+    const data = date.getDate()
+    // sp.innerHTML = `${year}.${fnw(month)}.${fnw(data)}`
+
+
+    function fnw(str){
+      return str > 10 ? str : "0" + str;
+    }
+
+    const sps = document.querySelectorAll('.time')
+    for (let index = 0; index < sps.length; index++) {
+      sps[index].innerHTML = `${year}.${fnw(month)}.${fnw(data)}`
+      
+    }
+  </script>
+</body>
+</html>

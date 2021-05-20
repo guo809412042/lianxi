@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="div">
+    这是一个国家级的项目,并且还是世界级的最高级的项目
+  </div>
+
+
+  <script>
+    const div = document.getElementById('div')
+    let text = div.innerHTML
+    const stopWord = ["国家级", "世界级", "最高级",'的'];
+    // arr 是您的敏感词数组
+    // value  是您要检测的内容
+    function filtion(arr, value) {
+        let re = '';
+        for (let i = 0; i < arr.length; i++) {
+            if (i==arr.length-1) {
+              console.log(arr)
+                re+=arr[i];
+            }else{
+              
+                re+=arr[i]+"|";
+                console.log(re)
+            }
+            //定义正则表示式对象
+            //利用RegExp可以动态生成正则表示式
+            let r = new RegExp(arr[i], "ig");
+            if(r.test(value)){
+                value = value.replace(r, "<font color='red'>" + arr[i] + "</font>");
+                return {
+                    key:false,
+                    value:value
+                };//这里是有敏感词的情况下，已经标红，并且提示为false，可以用来提示用户您有敏感词
+            }else{
+                return {
+                    key:true,
+                    value:value
+                };//这里是没有敏感词的情况下，直接返回value内容，并且提示为true
+            }  
+        }
+    }
+    filtion(stopWord,text)
+    div.innerHTML = filtion(stopWord,text).value
+
+  </script>
+</body>
+</html>

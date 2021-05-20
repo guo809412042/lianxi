@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #msg{width: 400px;height: 400px;border: 1px solid black;}
+
+        .targe_span {
+          padding: 2px 5px;
+          border: 1px solid green;
+          border-radius: 5px;
+          background-color: khaki;
+          color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+  <div id="div">
+    这是一个投诉的邮件,我要是315的节日去曝光,工商银行
+  </div>
+    <script>
+        const arr = ['投诉', '工商', '曝光','315','消协','市场热线','新闻','媒体','信访'];
+        const div = document.getElementById('div');
+        function workFilter(arr){
+          let text = div.innerHTML;
+          
+          for(var i = 0; i < arr.length; i ++){
+              let r = new RegExp(arr[i], "ig");
+              // console.log(text.replace(r,"<font color='red'>" + arr[i] + "</font>"))
+              text = text.replace(r,"<span class='targe_span'>" + arr[i] + "</span>");
+          }
+          return text;
+        }
+        div.innerHTML = workFilter(arr)
+    </script>
+</body>
+</html>
+
+keyword.forEach((item) => {
+  const r = new RegExp(item, 'ig');
+  const res = v.content.replace(r, `<span style="color:'red';">${item}</span>`);
+  v.content = res;
+});

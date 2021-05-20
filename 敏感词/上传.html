@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .big{
+      width: 500px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- accept="image/*,video/*,xlsx/*"  -->
+  <input type="file" id="file" accept="image/*,video/*,xlsx/*" multiple="multiple">
+  <div id="context"></div>
+
+
+  <script>
+    const file = document.getElementById('file');
+    let div = document.getElementById('context');
+
+    file.onchange = e => {
+      const files = e.target.files
+      for (let index = 0; index < files.length; index++) {
+        let fileR = new FileReader()
+        // fileR.readAsArrayBuffer(files[index])
+        fileR.readAsDataURL(files[index])
+        fileR.onload = result => {
+          console.log(result)
+          if(result.target.result.indexOf("video")!=-1){
+          div.innerHTML += `<video class="big" src="${result.target.result}" 
+              controls = "true"></video>`
+  
+          }else {
+            div.innerHTML += `<img class="big" type="0" src="${result.target.result}">`
+          }
+        }
+
+      }
+    }
+  </script>
+</body>
+</html>

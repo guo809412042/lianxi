@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="border: 1px solid red;">
+    <h2>上传CSV文件</h2>
+    <input type="file" id="file" accept=".csv" onchange="uploadfile();" />
+    <div id="result"> </div>
+</div>
+
+<br>
+<br>
+
+<div style="border: 1px solid red;">
+    <h2>上传图片</h2>
+    <input type="file" id="file2" accept="image/*" onchange="uploadfile2();" />
+    <div id="result2">
+        <img src="" alt="" id="img">
+    </div>
+</div>
+<script>
+  // 上传csv格式的文件
+  function uploadfile() {
+      let reads = new FileReader();
+      file = document.getElementById('file').files[0];
+      reads.readAsText(file, 'utf-8');
+      console.log(reads);
+      reads.onload = function (e) {
+          console.log(JSON.parse(e.target.result))
+          // document.getElementById('result').innerText = this.result
+          document.getElementById('result').innerText = e.target.result
+      };
+      reads.onloadstart = function(e) {
+          console.log('onloadstart ---> ', e)
+      }
+      reads.onloadend = function(e) {
+          console.log('onloadend ---> ', e)
+      }
+      reads.onprogress = function(e) {
+          console.log('onprogress ---> ', e)
+      }
+  }
+
+  // 上传image
+  function uploadfile2() {
+      let reads = new FileReader();
+      file = document.getElementById('file2').files[0];
+      reads.readAsDataURL(file);
+      console.log(reads);
+      reads.onload = function (e) {
+          document.getElementById('img').src = this.result;
+      };
+  }
+</script>
+</body>
+</html>
